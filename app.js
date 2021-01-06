@@ -7,6 +7,7 @@ form.addEventListener('submit', event => {
   event.preventDefault()
   
   let score = 0
+  let counter = 0
 
   const userAnswers = [
     form.inputQuestion1.value,
@@ -18,12 +19,18 @@ form.addEventListener('submit', event => {
   userAnswers.forEach((userAnswer, index) => {
     if (userAnswer === correctAnswers[index]) {
       score += 25
-      console.log(score)
     }
   })
 
   scrollTo(0, 0)
 
   result.classList.remove('d-none')
-  result.querySelector('span').textContent = `${score}%`
+
+  const timer = setInterval(() => {
+    if (counter === score) {
+      clearInterval(timer)
+    }
+    result.querySelector('span').textContent = `${counter}%`
+    counter++
+  }, 10);
 })
