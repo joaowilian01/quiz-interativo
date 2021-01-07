@@ -5,16 +5,7 @@ let score = 0
 const form = document.querySelector('.quiz-form')
 const finalScoreContainer = document.querySelector('.final-score-container')
 
-const getUserAnswers = () => {
-  let userAnswers = []
-
-  correctAnswers.forEach((_, index) => {
-    const userAnswer = form[`inputQuestion${index+1}`].value
-    userAnswers.push(userAnswer)
-  })
-
-  return userAnswers
-}
+const getUserAnswers = () => correctAnswers.map((_, index) => form[`inputQuestion${index+1}`].value)
 
 const calculateUserScore = userAnswers => {
   userAnswers.forEach((userAnswer, index) => {
@@ -47,9 +38,15 @@ const animateFinalScore = () => {
   }, 10);
 }
 
+const setScoreToZero = () => {
+  score = score != 0 ? 0 : score
+}
+
 form.addEventListener('submit', event => {
   event.preventDefault()
   
+  setScoreToZero()
+
   const userAnswers = getUserAnswers()
 
   calculateUserScore(userAnswers)
