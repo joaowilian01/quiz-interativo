@@ -38,14 +38,14 @@ const animateFinalScore = () => {
   }, 10);
 }
 
-const setScoreToZero = () => {
-  score = score != 0 ? 0 : score
+const resetUserScore = () => {
+  score = 0
 }
 
 form.addEventListener('submit', event => {
   event.preventDefault()
   
-  setScoreToZero()
+  resetUserScore()
 
   const userAnswers = getUserAnswers()
 
